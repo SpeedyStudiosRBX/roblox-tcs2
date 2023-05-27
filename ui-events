@@ -1,0 +1,19 @@
+local ts = game:GetService('TweenService')
+local quint1 = TweenInfo.new(.5,Enum.EasingStyle.Quint,Enum.EasingDirection.Out,0,false,0)
+
+script.collectTrash.OnClientEvent:Connect(function(item)
+	local x = script.Notification:Clone()
+	x.UIAspectRatioConstraint.AspectRatio = 1
+	x.NL.TextTransparency = 1
+	x.Parent = script.Parent.Notifs
+	x.NL.Text = 'Collected '..item.Name
+	ts:Create(x.UIAspectRatioConstraint,quint1,{AspectRatio = 10}):Play()
+	wait(.5)
+	ts:Create(x.NL,quint1,{TextTransparency = 0}):Play()
+	wait(2)
+	ts:Create(x.NL,quint1,{TextTransparency = 1}):Play()
+	wait(.5)
+	ts:Create(x.UIAspectRatioConstraint,quint1,{AspectRatio = 1}):Play()
+	wait(.5)
+	x:Destroy()
+end)
